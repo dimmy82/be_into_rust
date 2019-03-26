@@ -178,7 +178,9 @@ struct Object {
 
 impl Object {
     fn takes_self(self) {}
+
     fn takes_ref_self(&self) {}
+    
     fn takes_ref_mut_self(&mut self) {
         self.data.push_str(", &mut self")
     }
