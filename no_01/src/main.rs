@@ -81,29 +81,29 @@ fn borrow_reference() {
     let length = does_not_takes_ownership(&s1);
     println!("{} : size({})", s1, length);
 
-    //    let s1: String = String::from("hello");
-    //    let s: &mut String = &mut s1;
+//        let s1: String = String::from("hello");
+//        let s: &mut String = &mut s1;
 
     let mut s1: String = String::from("hello");
     println!("{}", s1);
-    {
-        let s: &mut String = &mut s1;
-        s.push_str(", mut ref");
-    }
+    let s: &mut String = &mut s1;
+    s.push_str(", mut ref");
     println!("{}", s1);
 
 //    let mut s1: String = String::from("hello");
 //    let s2: &String = &s1;
 //    let s3: &mut String = &mut s1;
+//    println!("{}", s2);
 
 //    let mut s1: String = String::from("hello");
 //    let s2: &mut String = &mut s1;
 //    let s3: &mut String = &mut s1;
-
+//    s2.push_str(", error occur here");
+    // ↑上と同じ理由ですが、mut所有権から発生したコンパイルエラー
 //    let mut s1: String = String::from("original");
 //    let s2: &mut String = &mut s1;
-//    s2.push_str(", pushed by mut ref");
 //    s1.push_str(", pushed by owner");
+//    s2.push_str(", pushed by mut ref");
 
 //    let s;
 //    {
@@ -129,6 +129,7 @@ fn slice() {
     let ss1: &str = &s1[2..=4];
     println!("&str: {:?}", ss1);
 
+    // 実行エラー
 //    let s2: String = String::from("こんにちは");
 //    let ss2 = &s2[2..4];
 //    println!("&str: {}", ss2);
