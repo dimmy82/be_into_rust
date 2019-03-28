@@ -100,6 +100,11 @@ fn borrow_reference() {
 //    let s2: &mut String = &mut s1;
 //    let s3: &mut String = &mut s1;
 
+//    let mut s1: String = String::from("original");
+//    let s2: &mut String = &mut s1;
+//    s2.push_str(", pushed by mut ref");
+//    s1.push_str(", pushed by owner");
+
 //    let s;
 //    {
 //        let s1: String = String::from("hello");
@@ -180,7 +185,7 @@ impl Object {
     fn takes_self(self) {}
 
     fn takes_ref_self(&self) {}
-    
+
     fn takes_ref_mut_self(&mut self) {
         self.data.push_str(", &mut self")
     }

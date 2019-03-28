@@ -2,5 +2,6 @@
 name = "no_01"
 version = "0.1.0"
 authors = ["teki.sei <teki.sei@uzabase.com>"]
+edition = "2018"
 
 [dependencies]
