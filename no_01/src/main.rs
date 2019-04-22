@@ -7,6 +7,11 @@ fn main() {
     borrow_reference();
     slice();
     object_method();
+    let ymd = "yyyy-mm-dd";
+    let year = &ymd[0..4];
+    let month = &ymd[5..7];
+    let day = &ymd[8..];
+    println!("{}", format!("{}{}{}",year,month,day));
 }
 
 fn ownership_moved() {
@@ -188,6 +193,79 @@ impl Object {
     fn takes_ref_self(&self) {}
 
     fn takes_ref_mut_self(&mut self) {
-        self.data.push_str(", &mut self")
+        self.data.push_str(", &mut self");
+    }
+}
+
+#[derive(Debug, Eq, PartialEq)]
+pub struct Fruit {
+    pub name: String,
+}
+
+#[derive(Debug, Eq, PartialEq)]
+pub struct Basket {
+    pub fruits: Vec<Fruit>,
+}
+
+impl Basket {
+    pub fn except(&self, other: &Basket) -> Basket {
+        Basket {
+            fruits: self.fruits.iter()
+                .filter(|fruit| !other.fruits.contains(fruit))
+                .map(|fruit| Fruit { name: fruit.name.clone() })
+                .collect()
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn except() {
+        let basket_x = Basket {
+            fruits: vec![
+                Fruit { name: "Apple".to_string() },
+                Fruit { name: "Banana".to_string() },
+            ]
+        };
+
+        let basket_y = Basket {
+            fruits: vec![
+                Fruit { name: "Banana".to_string() },
+                Fruit { name: "Orange".to_string() },
+            ]
+        };
+
+        let basket_z = Basket {
+            fruits: vec![
+                Fruit { name: "Apple".to_string() },
+            ]
+        };
+
+        let empty = Basket {
+            fruits: vec![]
+        };
+
+        assert_eq!(
+            basket_z,
+            basket_x.except(&basket_y),
+        );
+
+        assert_eq!(
+            empty,
+            basket_x.except(&basket_x),
+        );
+
+        assert_eq!(
+            empty,
+            empty.except(&basket_x),
+        );
+
+        assert_eq!(
+            basket_x,
+            basket_x.except(&empty),
+        );
     }
 }
