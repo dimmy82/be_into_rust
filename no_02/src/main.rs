@@ -3,6 +3,7 @@
 mod question_01;
 mod question_02;
 mod question_03;
+mod question_04;
 
 fn main() {
     let s1: String = String::from("長〜〜〜いやつ");
