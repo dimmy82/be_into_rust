@@ -4,6 +4,7 @@ mod question_01;
 mod question_02;
 mod question_03;
 mod question_04;
+mod question_05;
 
 fn main() {
     let s1: String = String::from("長〜〜〜いやつ");
@@ -14,6 +15,12 @@ fn main() {
 
     let data = create_data(s1.as_str(), s2.as_str());
     println!("{:?}", data);
+
+//    hoge(&String::from("a"));
+//    hoge(&1);
+
+    let a = String::from("aaa");
+    println!("{}", a.hoge());
 }
 
 fn longer<'a>(s1: &'a str, s2: &'a str) -> &'a str {
@@ -50,4 +57,25 @@ impl<'a, 'b> Data<'a, 'b> {
     fn xxx(&self, s3: &str) -> &str {
         self.value1
     }
+}
+
+fn hoge<T>(param: &T) {
+    unimplemented!()
+}
+
+trait Hoge {
+    fn hoge(&self) -> String;
+}
+
+impl Hoge for String {
+    fn hoge(&self) -> String {
+        format!("hoge: {}", self)
+    }
+}
+
+pub trait Hoge2 {
+    fn fuga1();
+    fn fuga2(self);
+    fn fuga3(&self);
+    fn fuga4(&mut self);
 }
