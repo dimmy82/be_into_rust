@@ -59,6 +59,15 @@ fn main() {
         Ok(int) => println!("i32 parse and doubled result: {}", int),
         Err(ErrorWrapper::ParseI32Failed(error)) => println!("{}", error)
     }
+
+    let a = A { a: "aaa", b: 0 };
+    match a {
+        A { a: "aaa", b: 0 } => println!("{}", ""),
+        A { a: _, b: 0 } => println!("{}", ""),
+        A { a: aa, b: _ } => println!("{}", aa),
+    }
+
+    IpAddr::V4(0, 0, 0, 0).a();
 }
 
 fn generate() -> Option<String> {
@@ -75,10 +84,14 @@ fn parse(string: &str) -> std::result::Result<i32, ErrorWrapper> {
     }
 }
 
-fn parse_and_double(string: &str) -> std::result::Result<i32, ErrorWrapper> {
+type Res<T> = std::result::Result<T, ErrorWrapper>;
+
+fn parse_and_double(string: &str) -> Res<i32> {
     let int = parse(string)?;
     Ok(int * 2)
 }
+
+fn a() {}
 
 enum Gender {
     Male,
@@ -90,6 +103,24 @@ enum IpAddr {
     V6(String),
 }
 
+impl IpAddr {
+    fn a(&self) {
+        match self {
+            IpAddr::V4(i1, i2, i3, i4) => {}
+            IpAddr::V6(string) => {}
+        }
+    }
+}
+
 enum ErrorWrapper {
     ParseI32Failed(String)
+}
+
+impl ErrorWrapper {
+    fn a(&self) {}
+}
+
+struct A<'a> {
+    a: &'a str,
+    b: i32,
 }
