@@ -15,7 +15,7 @@ impl Object2 {
     }
 }
 
-pub fn q_1_7_main() {
+pub fn main() {
     q1();
     q2();
     q3();

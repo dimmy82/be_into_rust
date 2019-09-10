@@ -1,29 +1,23 @@
 #![allow(warnings)]
 
-use crate::question_1_7::q_1_7_main;
-use crate::question_8_11::{q_10_main, q_11_main, q_8_main, q_9_main};
-
+mod question_10;
+mod question_11;
 mod question_1_7;
-mod question_8_11;
+mod question_8;
+mod question_9;
 
 fn main() {
-    //    ownership_moved();
-    //    copy_trait();
-    //    clone_trait();
-    //    borrow_reference();
-    //    slice();
-    //    object_method();
-    //    let ymd = "yyyy-mm-dd";
-    //    let year = &ymd[0..4];
-    //    let month = &ymd[5..7];
-    //    let day = &ymd[8..];
-    //    println!("{}", format!("{}{}{}", year, month, day));
-
-    q_1_7_main();
-    q_8_main();
-    q_9_main();
-    q_10_main();
-    q_11_main()
+    ownership_moved();
+    copy_trait();
+    clone_trait();
+    borrow_reference();
+    slice();
+    object_method();
+    let ymd = "yyyy-mm-dd";
+    let year = &ymd[0..4];
+    let month = &ymd[5..7];
+    let day = &ymd[8..];
+    println!("{}", format!("{}{}{}", year, month, day));
 }
 
 fn ownership_moved() {
