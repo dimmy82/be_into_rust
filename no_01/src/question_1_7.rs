@@ -1,3 +1,5 @@
+#![allow(warnings)]
+
 #[derive(Debug)]
 struct Object1 {
     pub a: String,
