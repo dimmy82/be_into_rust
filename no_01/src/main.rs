@@ -1,7 +1,7 @@
 #![allow(warnings)]
 
 use crate::question_1_7::q_1_7_main;
-use crate::question_8_11::q_8_main;
+use crate::question_8_11::{q_10_main, q_11_main, q_8_main, q_9_main};
 
 mod question_1_7;
 mod question_8_11;
@@ -19,7 +19,11 @@ fn main() {
     //    let day = &ymd[8..];
     //    println!("{}", format!("{}{}{}", year, month, day));
 
+    q_1_7_main();
     q_8_main();
+    q_9_main();
+    q_10_main();
+    q_11_main()
 }
 
 fn ownership_moved() {
